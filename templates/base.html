@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Media Site</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<nav>
+    <h2>My Media Site</h2>
+    <a href="/">Home</a>
+    <a href="/add">Add Review</a>
+    <a href="/suggest">Suggestions</a>
+    <a href="/?type=Movie">Movies</a>
+    <a href="/?type=Book">Books</a>
+</nav>
+
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+</body>
+</html>

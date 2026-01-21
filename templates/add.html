@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Add a Review</h1>
+
+<form id="addForm">
+    <label>Title</label><br>
+    <input type="text" name="title" required><br><br>
+
+    <label>Type</label><br>
+    <select name="category">
+        <option>Movie</option>
+        <option>Book</option>
+    </select><br><br>
+
+    <label>Rating</label><br>
+    <input type="number" name="rating" min="1" max="5" required><br><br>
+
+    <label>Review</label><br>
+    <textarea name="review" rows="4"></textarea><br><br>
+
+    <button type="submit">Add</button>
+</form>
+
+<p id="status"></p>
+
+<script>
+document.getElementById("addForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const res = await fetch("/add", {
+        method: "POST",
+        body: new FormData(this)
+    });
+
+    if (res.ok) {
+        document.getElementById("status").innerText = "Added successfully!";
+        this.reset();
+    } else {
+        document.getElementById("status").innerText = "Error adding review.";
+    }
+});
+</script>
+{% endblock %}
